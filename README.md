@@ -2,7 +2,8 @@
 
 This project was make in Java 8, Spring boot 2.4.1 and Maven.
 
-##Setup MySQL
+## Setup MySQL
+
 Run the `schema.sql` for the initial script on the DB.
 
 The administrator user is `admin` and the password is `admin`
