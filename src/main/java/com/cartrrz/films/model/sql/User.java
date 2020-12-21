@@ -22,7 +22,7 @@ public class User extends BaseEntity{
     @JsonIgnore
     private UserDetail userDetail;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "role_id")
     private Role role;
 

@@ -35,7 +35,7 @@ public class MovieController {
     @ResponseBody
     public ObjectResponse<MovieDTO> update(
             @RequestBody MovieDTO movieDTO,
-            @PathVariable Long movieId
+            @PathVariable("id") Long movieId
     ){
         ObjectResponse response = new ObjectResponse();
         try{
@@ -52,7 +52,7 @@ public class MovieController {
     @DeleteMapping("/delete/{id}")
     @ResponseBody
     public ObjectResponse<MovieDTO> delete(
-            @PathVariable Long movieId
+            @PathVariable("id") Long movieId
     ){
         ObjectResponse response = new ObjectResponse();
         try{

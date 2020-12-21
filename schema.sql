@@ -92,6 +92,6 @@ INSERT INTO role VALUE (NULL, 'CUSTOMER', 'customer', NOW(), NOW());
 INSERT INTO user_detail VALUE (NULL, 'admin', 'admin', 'admin address', 'admin@admin.com', NOW(), NOW());
 
 INSERT INTO user (username, password, user_detail_id, role_id, created_date, modified_date)
-SELECT 'admin', 'admin123' , d.id, (SELECT r.id FROM role r WHERE r.role_key = 'ADMIN'), NOW(), NOW()
+SELECT 'admin', '$2a$10$EhSQctNSOGRPoJr/qjb4xe9KGHUL.gwtp4RjMTUwu3FMCRrLUUrDa' , d.id, (SELECT r.id FROM role r WHERE r.role_key = 'ADMIN'), NOW(), NOW()
 FROM user_detail d
 WHERE d.email = 'admin@admin.com';

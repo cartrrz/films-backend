@@ -7,6 +7,8 @@ import com.cartrrz.films.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class MovieServiceImpl implements MovieService {
 
@@ -16,7 +18,10 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public MovieDTO create(MovieDTO movieDto) {
         Movie movie = populateMovie(movieDto, null);
+        movie.setModifiedDate(LocalDateTime.now());
+        movie.setCreatedDate(LocalDateTime.now());
         movieRepository.save(movie);
+        movieDto.setMovieId(movie.getId());
         return movieDto;
     }
 
@@ -25,7 +30,9 @@ public class MovieServiceImpl implements MovieService {
 
         Movie movie = movieRepository.findById(MovieId).orElseThrow(() -> new Exception("Movie not found"));
         movie = populateMovie(movieDTO, movie);
+        movie.setModifiedDate(LocalDateTime.now());
         movieRepository.save(movie);
+        movieDTO.setMovieId(movie.getId());
         return movieDTO;
     }
 
@@ -36,12 +43,13 @@ public class MovieServiceImpl implements MovieService {
         movieRepository.deleteById(MovieId);
 
         MovieDTO dto = new MovieDTO();
-        dto.setTitle(dto.getTitle());
+        dto.setTitle(movie.getTitle());
         dto.setDescription(movie.getDescription());
         dto.setAvailability(movie.isAvailability());
         dto.setRentPrice(movie.getRentPrice());
         dto.setSalePrice(movie.getSalePrice());
         dto.setStock(movie.getStock());
+        dto.setMovieId(movie.getId());
         return dto;
     }
 
