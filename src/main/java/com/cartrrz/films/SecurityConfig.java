@@ -34,10 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/test/**").permitAll()
+                .antMatchers("/api/movie").permitAll()
+                .antMatchers("/api/movie/detail/*").permitAll()
                 .antMatchers("/api/movie/add").hasRole("ADMIN")
                 .antMatchers("/api/movie/update/*").hasRole("ADMIN")
                 .antMatchers("/api/movie/delete/*").hasRole("ADMIN")
+                .antMatchers("/api/movie/all").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

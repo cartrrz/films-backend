@@ -7,6 +7,8 @@ public class JwtDTO {
 
     private String jwt;
 
+    private String type = "Bearer";
+
     private Long userId;
 
     private String username;
